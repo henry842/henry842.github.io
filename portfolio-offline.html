@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio profissional de Henry Souza Santos, Data Scientist e Machine Learning Engineer com foco em Python, SQL, Analytics, dashboards, modelos preditivos e solucoes com IA.">
+  <title>Henry Souza Santos | Data Science, Machine Learning e Analytics</title>
+  <style>
+    :root {
+      --ink: #0b1220;
+      --muted: #566174;
+      --soft: #f5f7fb;
+      --panel: rgba(255, 255, 255, .86);
+      --line: rgba(15, 23, 42, .12);
+      --blue: #075fd6;
+      --teal: #0a9f8f;
+      --amber: #d06a1f;
+      --navy: #101a33;
+      --green: #0f7b4f;
+      --shadow: 0 24px 70px rgba(16, 24, 40, .12);
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(115deg, rgba(7, 95, 214, .10), transparent 26%),
+        linear-gradient(245deg, rgba(10, 159, 143, .12), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #f6f8fc 44%, #ffffff 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, .045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.75), transparent 78%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      border-radius: 8px;
+      z-index: 99;
+    }
+    .skip:focus { left: 12px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(15, 23, 42, .10);
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      box-shadow: 0 10px 24px rgba(7, 95, 214, .26);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 760;
+    }
+    nav a { position: relative; padding: 6px 0; }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      transition: transform .2s ease;
+    }
+    nav a:hover::after, nav a.active::after { transform: scaleX(1); }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 72px);
+      display: grid;
+      align-items: center;
+      padding: 54px 0 42px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(7, 95, 214, .32), rgba(10, 159, 143, .32), transparent);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(330px, .94fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #075c54;
+      background: rgba(232, 251, 247, .82);
+      border: 1px solid rgba(10, 159, 143, .25);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 850;
+      box-shadow: 0 8px 24px rgba(10, 159, 143, .10);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 6px rgba(10, 159, 143, .12);
+    }
+
+    h1, h2, h3 { margin: 0; letter-spacing: 0; line-height: 1.07; }
+    h1 {
+      max-width: 820px;
+      margin-top: 18px;
+      font-size: clamp(42px, 7vw, 78px);
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(90deg, var(--blue), var(--teal) 54%, var(--amber));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+      max-width: 760px;
+    }
+    .proof {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      backdrop-filter: blur(12px);
+    }
+    .proof b { display: block; font-size: 20px; line-height: 1.1; }
+    .proof span { color: var(--muted); font-size: 13px; font-weight: 680; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 11px 15px;
+      background: rgba(255, 255, 255, .78);
+      color: var(--ink);
+      font-weight: 850;
+      box-shadow: 0 10px 22px rgba(16, 24, 40, .06);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(7, 95, 214, .32);
+      box-shadow: 0 16px 32px rgba(16, 24, 40, .11);
+    }
+    .btn.primary {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 520px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.52)),
+        linear-gradient(135deg, rgba(7,95,214,.16), rgba(10,159,143,.14));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      animation: panelIn .7s ease both;
+    }
+
+    .data-card {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, .72);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(16, 24, 40, .14);
+      padding: 16px;
+    }
+
+    .data-card.main {
+      inset: 24px 24px auto 24px;
+      min-height: 250px;
+    }
+    .data-card.side {
+      right: 24px;
+      bottom: 24px;
+      width: 45%;
+      min-width: 190px;
+    }
+    .data-card.stack {
+      left: 24px;
+      bottom: 24px;
+      width: 46%;
+      min-width: 210px;
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .status {
+      color: #075c54;
+      background: rgba(10, 159, 143, .12);
+      border: 1px solid rgba(10, 159, 143, .22);
+      border-radius: 999px;
+      padding: 5px 9px;
+    }
+
+    .chart {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 132px;
+      margin-top: 22px;
+      padding-top: 10px;
+      border-bottom: 1px solid rgba(15, 23, 42, .12);
+    }
+    .bar {
+      flex: 1;
+      min-width: 10px;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, var(--blue), var(--teal));
+      transform-origin: bottom;
+      animation: grow .9s ease both;
+    }
+    .bar:nth-child(2) { animation-delay: .08s; }
+    .bar:nth-child(3) { animation-delay: .16s; }
+    .bar:nth-child(4) { animation-delay: .24s; }
+    .bar:nth-child(5) { animation-delay: .32s; }
+    .bar:nth-child(6) { animation-delay: .40s; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .kpi {
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(245, 247, 251, .88);
+    }
+    .kpi b { display: block; font-size: 18px; }
+    .kpi span { color: var(--muted); font-size: 12px; font-weight: 720; }
+
+    .pipeline {
+      display: grid;
+      gap: 9px;
+      margin-top: 12px;
+    }
+    .pipe {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 820;
+    }
+    .pipe::after {
+      content: "";
+      width: 42%;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      opacity: .82;
+    }
+
+    section { padding: 72px 0; position: relative; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .section-kicker {
+      margin: 0 0 9px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    h2 { font-size: clamp(30px, 4vw, 46px); }
+    .section-head p {
+      max-width: 610px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .recruiter-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+    }
+    .pitch {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 16px 44px rgba(16, 24, 40, .08);
+    }
+    .pitch p { color: var(--muted); margin: 12px 0 0; }
+    .evidence-list {
+      display: grid;
+      gap: 12px;
+    }
+    .evidence {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .78);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .evidence:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(16, 24, 40, .10);
+    }
+    .evidence b { display: block; }
+    .evidence span { display: block; color: var(--muted); margin-top: 5px; }
+
+    .metrics, .skills, .workflows {
+      display: grid;
+      gap: 14px;
+    }
+    .metrics { grid-template-columns: repeat(4, 1fr); }
+    .skills { grid-template-columns: repeat(3, 1fr); }
+    .workflows { grid-template-columns: repeat(4, 1fr); }
+
+    .metric, .skill-box, .workflow {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 12px 34px rgba(16, 24, 40, .05);
+    }
+    .metric b {
+      display: block;
+      color: var(--blue);
+      font-size: 30px;
+      line-height: 1;
+    }
+    .metric span, .workflow p, .skill-box p {
+      color: var(--muted);
+      margin: 9px 0 0;
+    }
+    .workflow .num {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      font-weight: 900;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(7, 95, 214, .08);
+      color: #16456f;
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .project {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-height: 100%;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .86);
+      box-shadow: 0 14px 38px rgba(16, 24, 40, .06);
+      overflow: hidden;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .project::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--teal), var(--amber));
+      opacity: .85;
+    }
+    .project:hover {
+      transform: translateY(-4px);
+      border-color: rgba(7, 95, 214, .28);
+      box-shadow: 0 22px 54px rgba(16, 24, 40, .12);
+    }
+    .project.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+      background:
+        linear-gradient(135deg, rgba(7,95,214,.10), rgba(10,159,143,.10)),
+        rgba(255,255,255,.90);
+    }
+    .project h3 { font-size: 24px; }
+    .project p { margin: 0; color: var(--muted); }
+    .project small {
+      display: inline-flex;
+      width: max-content;
+      color: var(--green);
+      background: rgba(15, 123, 79, .10);
+      border: 1px solid rgba(15, 123, 79, .20);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-weight: 850;
+    }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-meta span {
+      padding: 5px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #334155;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 790;
+    }
+    .impact {
+      display: grid;
+      gap: 11px;
+      align-content: center;
+      padding: 20px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(7,95,214,.82), rgba(10,159,143,.82)),
+        var(--navy);
+    }
+    .impact b { font-size: 28px; line-height: 1.05; }
+
+    .timeline { display: grid; gap: 12px; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.76);
+    }
+    .timeline-item time { color: var(--amber); font-weight: 900; }
+    .timeline-item p { margin: 7px 0 0; color: var(--muted); }
+
+    .contact {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 24px;
+      align-items: center;
+      padding: 36px;
+      border-radius: 14px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(7, 95, 214, .22), rgba(10, 159, 143, .16)),
+        #0b1220;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .contact::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--teal), var(--amber));
+    }
+    .contact p { color: rgba(255,255,255,.76); margin: 14px 0 0; }
+    .contact-links { display: grid; gap: 10px; }
+    .contact-links a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.07);
+      font-weight: 850;
+      transition: background .18s ease, transform .18s ease;
+    }
+    .contact-links a:hover { background: rgba(255,255,255,.12); transform: translateX(3px); }
+
+    .print-note { margin-top: 15px; color: var(--muted); font-size: 13px; }
+    footer { padding: 28px 0 42px; color: var(--muted); font-size: 14px; }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .58s ease, transform .58s ease;
+    }
+    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes grow {
+      from { transform: scaleY(.12); opacity: .35; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(18px) rotateX(3deg); }
+      to { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+
+    @media (max-width: 920px) {
+      nav { display: none; }
+      .hero { min-height: auto; padding-top: 42px; }
+      .hero-grid, .recruiter-grid, .project.featured, .contact {
+        grid-template-columns: 1fr;
+      }
+      .metrics, .skills, .workflows, .projects, .proof-row {
+        grid-template-columns: 1fr;
+      }
+      .project.featured { grid-column: span 1; }
+      .section-head { align-items: start; flex-direction: column; }
+      .hero-panel { min-height: 600px; }
+      .data-card.side, .data-card.stack { width: calc(100% - 48px); }
+      .data-card.side { bottom: 24px; }
+      .data-card.stack { bottom: 200px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+
+    @media print {
+      header, .actions, .hero-panel, footer { display: none; }
+      body { background: #fff; color: #111; }
+      body::before { display: none; }
+      section, .hero { padding: 20px 0; min-height: auto; }
+      .container { width: 100%; }
+      .project, .metric, .skill-box, .workflow, .pitch, .evidence, .timeline-item, .contact {
+        box-shadow: none;
+        break-inside: avoid;
+        background: #fff;
+      }
+      .contact { color: #111; border: 1px solid #bbb; }
+      .contact p { color: #555; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#projetos">Ir para projetos</a>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Henry Souza Santos">
+        <span class="mark">HS</span>
+        <span>Henry Souza Santos</span>
+      </a>
+      <nav aria-label="Navegacao principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div data-reveal>
+          <span class="eyebrow">Portfolio para recrutadores - Data Science, ML e Analytics</span>
+          <h1>Transformo dados em <span class="gradient-text">decisoes, previsoes e produtos analiticos.</span></h1>
+          <p class="lead">
+            Sou Henry Souza Santos, profissional de dados com foco em Python, SQL, Machine Learning,
+            dashboards e solucoes com IA. Meu diferencial e construir projetos que vao alem do notebook:
+            entendo o problema, trato os dados, valido modelos, explico resultados e entrego interfaces
+            que ajudam pessoas a decidir melhor.
+          </p>
+
+          <div class="proof-row" aria-label="Resumo de credibilidade">
+            <div class="proof"><b>20+ projetos</b><span>em dados, ML, SQL, dashboards e IA</span></div>
+            <div class="proof"><b>End-to-end</b><span>do dado bruto a entrega para usuario final</span></div>
+            <div class="proof"><b>Bahia, Brasil</b><span>remoto, hibrido ou presencial</span></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#projetos">Ver projetos principais</a>
+            <a class="btn" href="https://github.com/henry842" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/henry-souza-santos/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="javascript:window.print()">Salvar em PDF</a>
+          </div>
+          <p class="print-note">Dica: para a entrega offline, abra este arquivo no navegador e use "Salvar em PDF".</p>
+        </div>
+
+        <aside class="hero-panel" aria-label="Painel visual de dados" data-reveal>
+          <div class="data-card main">
+            <div class="panel-top">
+              <span>Pipeline de valor</span>
+              <span class="status">Pronto para portfolio</span>
+            </div>
+            <div class="chart" aria-hidden="true">
+              <span class="bar" style="height:42%"></span>
+              <span class="bar" style="height:65%"></span>
+              <span class="bar" style="height:58%"></span>
+              <span class="bar" style="height:78%"></span>
+              <span class="bar" style="height:88%"></span>
+              <span class="bar" style="height:96%"></span>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi"><b>EDA</b><span>insights</span></div>
+              <div class="kpi"><b>ML</b><span>modelos</span></div>
+              <div class="kpi"><b>BI</b><span>decisao</span></div>
+            </div>
+          </div>
+          <div class="data-card stack">
+            <div class="panel-top"><span>Stack</span><span>Python + SQL</span></div>
+            <div class="pipeline">
+              <div class="pipe">Coleta</div>
+              <div class="pipe">Limpeza</div>
+              <div class="pipe">Modelagem</div>
+              <div class="pipe">Dashboard</div>
+            </div>
+          </div>
+          <div class="data-card side">
+            <div class="panel-top"><span>Contratacao</span><span>Fit</span></div>
+            <p style="margin:12px 0 0;color:var(--muted)">Perfil junior/pleno em evolucao, com repertorio pratico e boa capacidade de documentar solucoes.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">Proposta de valor</p>
+            <h2>O que um recrutador encontra aqui</h2>
+          </div>
+          <p>Este portfolio foi montado para responder rapidamente a pergunta mais importante: Henry consegue transformar aprendizado tecnico em entrega real?</p>
+        </div>
+
+        <div class="recruiter-grid">
+          <article class="pitch" data-reveal>
+            <h3>Perfil tecnico com mentalidade de produto</h3>
+            <p>
+              Meu foco e atuar em times que precisam transformar dados em analises confiaveis, modelos preditivos
+              e ferramentas de apoio a decisao. Meus projetos mostram dominio de Python, SQL, EDA, feature engineering,
+              comparacao de modelos, metricas, dashboards e comunicacao de resultados.
+            </p>
+            <p>
+              A intencao nao e apenas mostrar bibliotecas, mas demonstrar raciocinio: formular a pergunta certa,
+              avaliar qualidade dos dados, escolher metricas coerentes, evitar vazamento de dados e explicar o
+              impacto do resultado para negocio.
+            </p>
+          </article>
+
+          <div class="evidence-list" id="evidencias">
+            <div class="evidence" data-reveal><b>Pronto para desafios reais</b><span>Projetos com vendas, saude, credito, segmentacao, previsao e analise financeira.</span></div>
+            <div class="evidence" data-reveal><b>Capacidade de entrega</b><span>Dashboards, apps em Streamlit/Flask, repositorios documentados e solucoes navegaveis.</span></div>
+            <div class="evidence" data-reveal><b>Boa base para crescer no time</b><span>Conhecimento pratico em ML supervisionado, nao supervisionado, SQL e storytelling com dados.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Indicadores profissionais">
+      <div class="container metrics">
+        <div class="metric" data-reveal><b>Python</b><span>Pandas, NumPy, Scikit-learn, Plotly, Flask e Streamlit.</span></div>
+        <div class="metric" data-reveal><b>SQL</b><span>Consultas, joins, agregacoes, filtros, subconsultas e relatorios.</span></div>
+        <div class="metric" data-reveal><b>ML</b><span>Random Forest, XGBoost, CatBoost, SVM, K-Means e validacao.</span></div>
+        <div class="metric" data-reveal><b>IA</b><span>OCR, LLMs, automacao analitica e produtos com apoio de IA.</span></div>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">Competencias</p>
+            <h2>Habilidades organizadas por entrega</h2>
+          </div>
+          <p>Em vez de uma lista solta de ferramentas, estas competencias mostram como eu penso e executo um projeto de dados.</p>
+        </div>
+
+        <div class="skills">
+          <div class="skill-box" data-reveal>
+            <h3>Machine Learning</h3>
+            <p>Classificacao, regressao, clustering, validacao cruzada, balanceamento de classes, tuning e interpretabilidade.</p>
+            <div class="tags">
+              <span class="tag">Random Forest</span><span class="tag">XGBoost</span><span class="tag">CatBoost</span><span class="tag">SVM</span><span class="tag">K-Means</span><span class="tag">SMOTE</span><span class="tag">SHAP</span>
+            </div>
+          </div>
+          <div class="skill-box" data-reveal>
+            <h3>Analytics e BI</h3>
+            <p>Analise exploratoria, KPIs, visualizacao, storytelling, dashboards e leitura de negocio para tomada de decisao.</p>
+            <div class="tags">
+              <span class="tag">EDA</span><span class="tag">KPIs</span><span class="tag">Plotly</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Forecasting</span>
+            </div>
+          </div>
+          <div class="skill-box" data-reveal>
+            <h3>Produtos e automacao</h3>
+            <p>Interfaces simples, apps de dados, pipelines reproduziveis, documentacao e automacoes com IA para acelerar analises.</p>
+            <div class="tags">
+              <span class="tag">Streamlit</span><span class="tag">Flask</span><span class="tag">React</span><span class="tag">SaaS</span><span class="tag">OCR</span><span class="tag">LLMs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">Metodo de trabalho</p>
+            <h2>Como eu conduzo um projeto</h2>
+          </div>
+          <p>Esse fluxo ajuda recrutadores a enxergar minha organizacao tecnica e minha capacidade de trabalhar com problemas ambigueos.</p>
+        </div>
+        <div class="workflows">
+          <div class="workflow" data-reveal><span class="num">1</span><h3>Entendo o problema</h3><p>Defino objetivo, publico, metrica de sucesso e limite da solucao.</p></div>
+          <div class="workflow" data-reveal><span class="num">2</span><h3>Preparo os dados</h3><p>Limpeza, EDA, tratamento de nulos, outliers, correlacoes e features.</p></div>
+          <div class="workflow" data-reveal><span class="num">3</span><h3>Modelo e valido</h3><p>Comparo algoritmos, uso metricas coerentes e reduzo risco de overfitting.</p></div>
+          <div class="workflow" data-reveal><span class="num">4</span><h3>Comunico impacto</h3><p>Transformo resultado tecnico em dashboard, relatorio ou app utilizavel.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">Projetos selecionados</p>
+            <h2>Casos que provam competencia tecnica</h2>
+          </div>
+          <p>Selecao voltada para empregabilidade: projetos que mostram problema, stack, metodo, entrega e valor para negocio.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project featured" data-reveal>
+            <div>
+              <small>Projeto principal para abrir entrevistas</small>
+              <h3>InsightFlow AI - Plataforma de Forecasting de Vendas</h3>
+              <p>
+                Plataforma analitica para upload de CSV/Excel, previsao de vendas, KPIs, graficos, simulacao de cenarios
+                e exportacao de relatorios. O projeto e forte para recrutadores porque mostra pensamento de produto:
+                nao fica preso ao modelo, entrega uma experiencia completa para tomada de decisao.
+              </p>
+              <div class="project-meta">
+                <span>Forecasting</span><span>Machine Learning</span><span>Dashboard</span><span>SaaS</span><span>UX de dados</span>
+              </div>
+            </div>
+            <div class="impact">
+              <b>Por que convence?</b>
+              <span>Mostra capacidade de unir dados, modelo, interface e narrativa executiva em uma solucao utilizavel.</span>
+            </div>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>IA aplicada a negocio</small>
+            <h3>FinSight AI - Analise Financeira com IA</h3>
+            <p>Ferramenta para processar relatorios financeiros com OCR e LLMs, gerando health score, sentimento, red flags e apoio a analise de investimento.</p>
+            <div class="project-meta"><span>IA</span><span>OCR</span><span>LLMs</span><span>Financas</span><span>Automacao</span></div>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>Pipeline completo de ML</small>
+            <h3>Hypothyroid Pipeline - Diagnostico Clinico</h3>
+            <p>Previsao de hipotireoidismo com pre-processamento, balanceamento com SMOTE, comparacao de modelos, analise de erros e interpretabilidade com SHAP.</p>
+            <div class="project-meta"><span>Saude</span><span>SMOTE</span><span>SHAP</span><span>Classificacao</span><span>Model comparison</span></div>
+            <a class="btn" href="https://github.com/henry842/hypothyroid-pipeline" target="_blank" rel="noreferrer">Ver codigo</a>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>BI e decisao comercial</small>
+            <h3>DKidsFantasias - Dashboard de Vendas</h3>
+            <p>Dashboard para analisar vendas, produtos, pagamentos e previsao de faturamento, com foco em transformar dados operacionais em decisoes comerciais.</p>
+            <div class="project-meta"><span>BI</span><span>Vendas</span><span>Python</span><span>Plotly</span><span>Forecast</span></div>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>Competicao e engenharia de atributos</small>
+            <h3>Titanic CatBoost Pipeline - Kaggle</h3>
+            <p>Pipeline com CatBoost, K-Fold Target Encoding, feature engineering, threshold tuning e pseudo-labeling opcional, com cuidado contra vazamento de dados.</p>
+            <div class="project-meta"><span>CatBoost</span><span>Kaggle</span><span>K-Fold</span><span>Feature engineering</span></div>
+            <a class="btn" href="https://github.com/henry842/titanic-catboost-pipeline" target="_blank" rel="noreferrer">Ver codigo</a>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>Modelagem e interpretacao</small>
+            <h3>VinEye - Qualidade de Vinho</h3>
+            <p>Analise de vinhos tintos com variaveis quimicas, Random Forest, otimizacao de hiperparametros e importancia de atributos para explicar previsoes.</p>
+            <div class="project-meta"><span>Random Forest</span><span>EDA</span><span>Modelagem</span><span>Visualizacao</span></div>
+            <a class="btn" href="https://github.com/henry842/VinEye-O-Olho-Digital-do-Sommelier" target="_blank" rel="noreferrer">Ver codigo</a>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>Clustering para estrategia</small>
+            <h3>Customer Segmentation - K-Means</h3>
+            <p>Segmentacao de clientes com padronizacao, Elbow Method, Silhouette Score e interpretacao de perfis para marketing e relacionamento.</p>
+            <div class="project-meta"><span>K-Means</span><span>Clustering</span><span>Marketing Analytics</span><span>Insights</span></div>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>Base essencial para dados</small>
+            <h3>VendasAnalytics SQL</h3>
+            <p>Analises de vendas com SQL puro, usando joins, agregacoes, filtros, subconsultas e relatorios para responder perguntas de negocio.</p>
+            <div class="project-meta"><span>SQL</span><span>Analytics</span><span>Vendas</span><span>Relatorios</span></div>
+            <a class="btn" href="https://github.com/henry842/VendasAnalytics-SQL" target="_blank" rel="noreferrer">Ver codigo</a>
+          </article>
+
+          <article class="project" data-reveal>
+            <small>Comparacao de modelos</small>
+            <h3>Car Purchase Propensity - SVM vs XGBoost</h3>
+            <p>Comparacao entre SVM e XGBoost para prever propensao de compra de carros, com metricas de classificacao e leitura dos resultados.</p>
+            <div class="project-meta"><span>XGBoost</span><span>SVM</span><span>Classificacao</span><span>Metricas</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="trajetoria">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">Evolucao</p>
+            <h2>Trajetoria e foco atual</h2>
+          </div>
+          <p>Este portfolio e uma primeira versao profissional e deve evoluir conforme novos projetos e modulos forem concluidos.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item" data-reveal><time>2026</time><div><h3>Produtos analiticos e IA</h3><p>Projetos mais completos, conectando dados, modelos, dashboards e automacao inteligente.</p></div></div>
+          <div class="timeline-item" data-reveal><time>2025</time><div><h3>Machine Learning, SQL e BI</h3><p>Construcao de base tecnica com classificacao, regressao, clustering, analise de vendas, saude, credito e e-commerce.</p></div></div>
+          <div class="timeline-item" data-reveal><time>Agora</time><div><h3>Buscando oportunidade em dados</h3><p>Aberto a vagas, projetos e colaboracoes em Data Science, Machine Learning, BI, Analytics e automacao com IA.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="contact" data-reveal>
+          <div>
+            <h2>Vamos conversar sobre dados que geram decisao.</h2>
+            <p>
+              Disponivel para oportunidades em Data Science, Machine Learning, Analytics, BI, dashboards
+              e solucoes com IA. Se voce procura alguem com boa base tecnica, repertorio pratico e vontade
+              de evoluir rapido, este portfolio mostra meu ponto de partida.
+            </p>
+          </div>
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/henry-souza-santos/" target="_blank" rel="noreferrer"><span>LinkedIn</span><span>Abrir</span></a>
+            <a href="https://github.com/henry842" target="_blank" rel="noreferrer"><span>GitHub</span><span>Abrir</span></a>
+            <a href="mailto:adicione-seu-email@example.com"><span>E-mail</span><span>Editar</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Atualizado em 16/05/2026. Baseado nos projetos publicos do GitHub henry842 e no posicionamento profissional informado por Henry Souza Santos.
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll("[data-reveal]");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 35, 220)}ms`;
+      revealObserver.observe(item);
+    });
+
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const navLinks = [...document.querySelectorAll("nav a")];
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+        });
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+    sections.forEach((section) => navObserver.observe(section));
+  </script>
+</body>
+</html>
